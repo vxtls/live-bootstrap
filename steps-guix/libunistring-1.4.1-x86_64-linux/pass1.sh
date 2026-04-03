@@ -3,6 +3,13 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+: "${CROSS_TARGET:=x86_64-unknown-linux-musl}"
+: "${CROSS_SYSROOT:=/x86_64-linux-cross}"
+: "${BUILD_TARGET:=${TARGET:-i686-unknown-linux-musl}}"
+
+ARCH_PREFIX=/usr/guix-bootstrap/x86_64-linux
+ARCH_LIBDIR=${ARCH_PREFIX}/lib
+
 src_prepare() {
     default
 
@@ -62,8 +69,13 @@ src_prepare() {
 }
 
 src_configure() {
+    CC="${CROSS_SYSROOT}/bin/${CROSS_TARGET}-gcc" \
+    AR="${CROSS_SYSROOT}/bin/${CROSS_TARGET}-ar" \
+    RANLIB="${CROSS_SYSROOT}/bin/${CROSS_TARGET}-ranlib" \
     ./configure \
-        --prefix="${PREFIX}" \
-        --libdir="${LIBDIR}" \
+        --prefix="${ARCH_PREFIX}" \
+        --libdir="${ARCH_LIBDIR}" \
+        --build="${BUILD_TARGET}" \
+        --host="${CROSS_TARGET}" \
         --disable-shared
 }

@@ -25,7 +25,10 @@ src_prepare() {
         -e "s|@EXEC_TAR_HASH@|${EXEC_TAR_HASH}|g" \
         -e "s|@EXEC_XZ_HASH@|${EXEC_XZ_HASH}|g" \
         -e "s|@STATIC_BINARIES_SEED_HASH@|${STATIC_BINARIES_SEED_HASH}|g" \
-        -e "s|@GUILE_SEED_HASH@|${GUILE_SEED_HASH}|g" \
+        -e "s|@GUILE_SEED_FILE_I686@|${GUILE_SEED_FILE_I686}|g" \
+        -e "s|@GUILE_SEED_HASH_I686@|${GUILE_SEED_HASH_I686}|g" \
+        -e "s|@GUILE_SEED_FILE_X86_64@|${GUILE_SEED_FILE_X86_64}|g" \
+        -e "s|@GUILE_SEED_HASH_X86_64@|${GUILE_SEED_HASH_X86_64}|g" \
         -e "s|@MES_MINIMAL_SEED_HASH@|${MES_MINIMAL_SEED_HASH}|g" \
         -e "s|@MESCC_TOOLS_SEED_HASH@|${MESCC_TOOLS_SEED_HASH}|g" \
         "${patch_template}" > "${rendered_patch}"

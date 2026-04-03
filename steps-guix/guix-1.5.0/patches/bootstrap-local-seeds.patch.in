@@ -41,17 +41,20 @@
                      "/20210725/guile-3.0.2.tar.xz")
                     (_
 -                    "/20131110/guile-2.0.9.tar.xz"))))
-+                    "/guile-static-stripped-2.0.9-i686-linux.tar.xz"))))
++                   ("x86_64-linux"
++                    "/@GUILE_SEED_FILE_X86_64@")
++                   (_
++                    "/@GUILE_SEED_FILE_I686@"))))
  
  (define (bootstrap-guile-hash system)
    "Return the SHA256 hash of the Guile bootstrap tarball for SYSTEM."
    (match system
      ("x86_64-linux"
 -     (base32 "1w2p5zyrglzzniqgvyn1b55vprfzhgk8vzbzkkbdgl5248si0yq3"))
-+     (base32 "@GUILE_SEED_HASH@"))
++     (base32 "@GUILE_SEED_HASH_X86_64@"))
      ("i686-linux"
 -     (base32 "0im800m30abgh7msh331pcbjvb4n02smz5cfzf1srv0kpx3csmxp"))
-+     (base32 "@GUILE_SEED_HASH@"))
++     (base32 "@GUILE_SEED_HASH_I686@"))
      ("mips64el-linux"
       (base32 "0fzp93lvi0hn54acc0fpvhc7bvl0yc853k62l958cihk03q80ilr"))
      ("armhf-linux"

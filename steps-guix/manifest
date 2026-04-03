@@ -6,6 +6,7 @@
 # Build 64-bit kernel
 build: binutils-2.41-guix
 build: gcc-15.2.0-guix
+build: musl-1.2.5-x86_64-linux
 build: argp-standalone-1.4.1
 build: musl-fts-1.2.7
 build: musl-obstack-1.2.3
@@ -45,6 +46,18 @@ build: guile-avahi-0.4.1
 build: guile-git-0.10.0
 build: guile-json-4.7.3
 build: guile-semver-0.2.0
+# Build Guile 2.0.9 bootstrap stacks for both i686 and x86_64.
+build: libffi-3.5.2-i686-linux
+build: libunistring-1.4.1-i686-linux
+build: gc-8.2.12-i686-linux
+build: guile-2.0.9-i686-linux
+build: binutils-2.41-x86_64-linux-cross
+build: gcc-15.2.0-x86_64-linux-cross
+build: musl-1.2.5-x86_64-linux-cross
+build: libffi-3.5.2-x86_64-linux
+build: libunistring-1.4.1-x86_64-linux
+build: gc-8.2.12-x86_64-linux
+build: guile-2.0.9-x86_64-linux
 # End of Guix Dependencies
 # Build Guix Bootstrap seeds (All flowing must be static)
 # Build static-binaries-0-i686-linux.tar.xz
@@ -59,11 +72,6 @@ build: bzip2-1.0.6
 build: patch-2.7.6
 build: bash-5.3-1
 build: static-binaries-0-i686-linux
-# Build guile-static-stripped-2.0.9-i686-linux.tar.xz
-build: libunistring-1.4.1-guix
-build: gc-8.2.12-guix
-build: libffi-3.5.2-guix
-build: guile-2.0.9
 # Build mes-minimal-stripped-0.19-i686-linux.tar.xz
 build: mes-minimal-stripped-0.19-i686-linux
 # Build mescc-tools-static-stripped-0.5.2-i686-linux.tar.xz
