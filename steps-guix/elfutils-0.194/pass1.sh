@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 # Build elfutils against kernel-toolchain dependencies.
+: "${KERNEL_TARGET:=x86_64-unknown-linux-musl}"
 : "${KERNEL_SYSROOT:=/kernel-toolchain}"
 
 src_prepare() {
@@ -23,15 +24,15 @@ src_configure() {
     CPPFLAGS="-I${KERNEL_SYSROOT}/include" \
     CFLAGS="-Wno-error=unused-but-set-variable" \
     LDFLAGS="-L${KERNEL_SYSROOT}/lib" \
-    CC=gcc \
-    AR=ar \
-    RANLIB=ranlib \
+    CC="${KERNEL_SYSROOT}/bin/${KERNEL_TARGET}-gcc" \
+    AR="${KERNEL_SYSROOT}/bin/${KERNEL_TARGET}-ar" \
+    RANLIB="${KERNEL_SYSROOT}/bin/${KERNEL_TARGET}-ranlib" \
     ../configure \
         --prefix="${KERNEL_SYSROOT}" \
         --libdir="${KERNEL_SYSROOT}/lib" \
         --includedir="${KERNEL_SYSROOT}/include" \
         --build="${TARGET}" \
-        --host="${TARGET}" \
+        --host="${KERNEL_TARGET}" \
         --disable-textrelcheck \
         --disable-debuginfod \
         --disable-libdebuginfod
